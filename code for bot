@@ -48,3 +48,4 @@ async def kill(ctx):
 
 keep_alive()
 client.run(os.getenv('TOKEN'))
+h dont copy the h this is just to change something
