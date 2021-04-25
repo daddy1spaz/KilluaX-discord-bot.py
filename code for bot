@@ -1,0 +1,50 @@
+import discord
+from discord.ext import commands
+import os
+import random
+import time
+from keep_alive import keep_alive
+help_command = commands.DefaultHelpCommand(
+    no_category = 'Commands'
+)
+
+client = commands.Bot(command_prefix='k!',help_command=help_command)
+
+@client.event
+async def on_ready():
+    print("Im from an elite gang of assasins".format(client))
+    await client.change_presence(activity=discord.Game(name="Hunter exam"), status=discord.Status.online)
+   
+
+
+@client.command(brief="Killua greets you", description="Killua greets you")
+async def hello(ctx):
+    choices=['whats up','yo whas up','hey',"owo?", "am better than u",'U wont pass the hunter exam smh','good morning','uwu~']
+    await ctx.send(random.choice(choices))
+@client.command(brief="Killua answers a yes or no question", description = "Killua answers a yes or no question")
+async def ask(ctx):
+    choices=['yes','no','yasss','sadly, no','I regret saying this but yes',"you're crazy, right? ofc not!"]
+    await ctx.send(random.choice(choices))
+@client.command(brief= "Killua will insult someone for free " ,   description="Killua will insult anyone for free!")
+async def insult(ctx,*,args):
+    choices=['so dog water','ur trash kiddo','nothing but a BiG NOOB','you = noob','ur so weak', "u look like a person that isnt gonna pass the hunter exam","stop existing","do you are have stupid?","I'm so cool unlike you","*insults*","you have small brain","imagine not being from an elite gang of assasins what a patethic loser am i right?"]
+    await ctx.send(args + ', ' + random.choice(choices))
+@client.command(brief="Shows you what KilluaX is", description="Shows you what KilluaX")
+async def info(ctx):
+    embedVar = discord.Embed(title="Bot Information", description="What is KilluaX", color=000000)
+    embedVar.add_field(name="Creators", value="The KilluaX bot is a bot made by me because i was bored. Features are being added daily and you can use k!help to see all the commands!", inline=False)
+    embedVar.set_thumbnail(url=client.user.avatar_url)
+    embedVar.set_author(name=client.user.name, icon_url=client.user.avatar_url)
+    await ctx.send(embed=embedVar)
+@client.command(brief="God will strike down the user", description="God strikes down a user")
+async def die(ctx,*, args):
+    choices=[f"{args} fell and hit their head!", f"{args} got caught in an accident with a large shark...",f"{args} commit suicide after failing the hunter exam",f"{args} tried to build their own nuclear bomb...", f"Two trucks crashed into each other. {ctx.author.mention} and {args} the truck drivers start fighting. One of the trucks is filled with gas. The gas in the truck is leaking and {ctx.author.mention} grabs a lighter to ignite the gas. {ctx.author.mention} pushes {args} into gas and {args} blows up", f"{args} went bungee jumping, if only they knew how to...", f"We knew {args} couldn't handle it, but we let them fly that plane anyway.",f'{args} died of too much pogging',f'{args} choked on air',f"{args} died during the hunter exam RIP {ctx.author.mention}:pensive:"]
+    await ctx.send(random.choice(choices))
+@client.command(brief="Killua is an elite assasin remember",
+description="killua will kill any user after this command")
+async def kill(ctx):
+  choices=["POV u got to fancy resturant and IM disguised as a dude who serves the food and i POSION ur drink hah loser get poisoned","I burn your house down with you inside it","STABY STAB STAB:smiling_imp:","I give u free discord nitro but its an ip grabber and i come to ur house and *kills* u"]
+  await ctx.send(random.choice(choices))
+
+keep_alive()
+client.run(os.getenv('TOKEN'))
